@@ -27,6 +27,7 @@ import org.apache.lucene.util.SetOnce;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.ActionListener;
 import org.elasticsearch.action.DocWriteResponse;
+import org.elasticsearch.action.NoShardAvailableActionException;
 import org.elasticsearch.action.admin.cluster.node.stats.NodeStats;
 import org.elasticsearch.action.admin.cluster.node.stats.NodesStatsResponse;
 import org.elasticsearch.action.admin.cluster.reroute.ClusterRerouteUtils;
@@ -40,6 +41,7 @@ import org.elasticsearch.action.admin.indices.stats.IndicesStatsResponse;
 import org.elasticsearch.action.admin.indices.stats.ShardStats;
 import org.elasticsearch.action.bulk.TransportBulkAction;
 import org.elasticsearch.action.index.IndexRequestBuilder;
+import org.elasticsearch.action.search.SearchPhaseExecutionException;
 import org.elasticsearch.action.support.ActionTestUtils;
 import org.elasticsearch.action.support.ActiveShardCount;
 import org.elasticsearch.action.support.ChannelActionListener;
@@ -88,6 +90,7 @@ import org.elasticsearch.index.IndexVersions;
 import org.elasticsearch.index.analysis.AbstractTokenFilterFactory;
 import org.elasticsearch.index.analysis.TokenFilterFactory;
 import org.elasticsearch.index.engine.Engine;
+import org.elasticsearch.index.engine.InternalEngine;
 import org.elasticsearch.index.engine.Segment;
 import org.elasticsearch.index.mapper.MapperParsingException;
 import org.elasticsearch.index.mapper.SeqNoFieldMapper;
@@ -396,6 +399,32 @@ public class IndexRecoveryIT extends AbstractIndexRecoveryIntegTestCase {
 
         List<RecoveryState> recoveryStates = response.shardRecoveryStates().get(INDEX_NAME);
         assertThat(recoveryStates.size(), equalTo(0));  // Should not expect any responses back
+    }
+
+    public void testRecoveryWithNoReplicas() throws Exception {
+        logger.info("--> start nodes");
+        final String nodeName = internalCluster().startNode();
+        createIndex(INDEX_NAME, SHARD_COUNT_1, REPLICA_COUNT_0);
+        indexDoc(INDEX_NAME, "1", "foo", "bar");
+        ensureGreen();
+
+        logger.info("--> failing shard");
+        final var indicesService = internalCluster().getInstance(IndicesService.class, nodeName);
+        final Index index = resolveIndex(INDEX_NAME);
+        final var indexService = indicesService.indexService(index);
+        final var shard = indexService.getShard(0);
+        shard.failShard("fake merge failure", new Exception("boom"));
+
+        ensureRed(INDEX_NAME);
+        assertBusy(() -> {
+            try {
+                assertHitCount(prepareSearch(INDEX_NAME).setSize(0), 1);
+            } catch (SearchPhaseExecutionException e) {
+                assert false : "exception";
+            }
+        });
+
+        ensureGreen(INDEX_NAME);
     }
 
     public void testReplicaRecovery() throws Exception {

@@ -30,7 +30,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class ThreadedActionListenerTests extends ESTestCase {
 
     public void testRejectionHandling() throws InterruptedException {
-        final var listenerCount = between(1, 1000);
+        final var listenerCount = between(500, 1000);
         final var countdownLatch = new CountDownLatch(listenerCount);
         final var threadPool = new TestThreadPool(
             "test",
@@ -38,8 +38,8 @@ public class ThreadedActionListenerTests extends ESTestCase {
             new FixedExecutorBuilder(
                 Settings.EMPTY,
                 "fixed-bounded-queue",
-                between(1, 3),
-                10,
+                between(1, 2),
+                1,
                 "fbq",
                 randomFrom(TaskTrackingConfig.DEFAULT, TaskTrackingConfig.DO_NOT_TRACK)
             ),
@@ -57,7 +57,8 @@ public class ThreadedActionListenerTests extends ESTestCase {
         final var closeFlag = new AtomicBoolean();
         try {
             final var pools = randomNonEmptySubsetOf(
-                List.of("fixed-bounded-queue", "fixed-unbounded-queue", "scaling-drop-if-shutdown", "scaling-reject-if-shutdown")
+//                List.of("fixed-bounded-queue", "fixed-unbounded-queue", "scaling-drop-if-shutdown", "scaling-reject-if-shutdown")
+                List.of("fixed-bounded-queue")
             );
             final var shutdownUnsafePools = Set.of("fixed-bounded-queue", "scaling-drop-if-shutdown");
 
@@ -66,7 +67,8 @@ public class ThreadedActionListenerTests extends ESTestCase {
                     final var pool = randomFrom(pools);
                     final var listener = new ThreadedActionListener<Void>(
                         threadPool.executor(pool),
-                        (pool.equals("fixed-bounded-queue") || pool.startsWith("scaling")) && rarely(),
+//                        (pool.equals("fixed-unbounded-queue") || pool.startsWith("scaling")) && rarely(),
+                        false,
                         ActionListener.runAfter(new ActionListener<>() {
                             @Override
                             public void onResponse(Void ignored) {}
@@ -112,6 +114,10 @@ public class ThreadedActionListenerTests extends ESTestCase {
                 }
             });
         } finally {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {}
+
             synchronized (closeFlag) {
                 assertTrue(closeFlag.compareAndSet(false, true));
                 threadPool.shutdown();

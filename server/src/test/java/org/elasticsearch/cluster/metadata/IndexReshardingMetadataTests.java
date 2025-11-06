@@ -9,9 +9,164 @@
 
 package org.elasticsearch.cluster.metadata;
 
+import org.elasticsearch.common.util.set.Sets;
 import org.elasticsearch.test.ESTestCase;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 public class IndexReshardingMetadataTests extends ESTestCase {
+    public void testSplitBuckets() {
+        final int routingNumShards = 12;
+        final int initialNumShards = 3;
+        final int splitShards = 6;
+        final Map<Integer, Set<Integer>> buckets = HashMap.newHashMap(initialNumShards);
+        for (int i = 0; i < splitShards; i++) {
+            buckets.put(i, Sets.newHashSet());
+        }
+        for (int i = 0; i < routingNumShards; i++) {
+//            int toShardId = Math.floorMod(i, routingNumShards) / routingFactor;
+//            int splitShardId = (toShardId + (toShardId % splitFactor) * splitShards) / splitFactor;
+            int splitShardId = calculateShardFFT(i, initialNumShards, routingNumShards, splitShards);
+            var shard = buckets.get(splitShardId);
+            assert shard != null : "no bucket for shard " + splitShardId;
+            assert shard.contains(i) == false;
+            shard.add(i);
+        }
+
+        for (int i = 0; i < splitShards; i++) {
+            System.out.println("S" + i + " -> " + ofSet(buckets.get(i)));
+        }
+    }
+
+    int calculateShardTB(int hash, int originalNumShards, int routingNumShards, int currentNumShards) {
+        int routingShardId = Math.floorMod(hash, routingNumShards);
+
+        // Start with original placement
+        int originalRoutingFactor = routingNumShards / originalNumShards;
+        int shard = routingShardId / originalRoutingFactor;
+
+        // Apply each doubling split incrementally
+        int numShards = originalNumShards;
+        while (numShards < currentNumShards) {
+            int routingFactor = routingNumShards / numShards;
+            int positionInShard = routingShardId % routingFactor;
+            int halfSize = routingFactor / 2;
+
+            // If in second half, move to split-off shard
+            if (positionInShard >= halfSize) {
+                shard = shard + numShards;
+            }
+
+            numShards *= 2;
+        }
+
+        return shard;
+    }
+
+    public static int calculateShardTJ(int hash, int originalNumShards, int currentNumShards, int routingNumShards) {
+        int timesSplit = Integer.numberOfTrailingZeros(currentNumShards / originalNumShards);
+        int routingFactor = routingNumShards / currentNumShards;
+
+        int rawShardId = Math.floorMod(hash, routingNumShards) / routingFactor;
+
+        return bitReverse(rawShardId, timesSplit) * originalNumShards + (rawShardId >> timesSplit);
+    }
+
+    private static int bitReverse(int value, int numBits) {
+        if (numBits == 0) {
+            return 0;
+        }
+
+        // Reverse all 32 bits, then shift right to get only the numBits we care about
+        return Integer.reverse(value) >>> (32 - numBits);
+    }
+    private int calculateShardFFT(int hash, int originalNumShards, int routingNumShards, int currentNumShards) {
+        int routingFactor = routingNumShards / currentNumShards;
+        int rawShardId = Math.floorMod(hash, routingNumShards) / routingFactor;
+        int timesResplit = Integer.numberOfTrailingZeros(currentNumShards / originalNumShards);
+
+        return bitReverse(rawShardId, timesResplit) * originalNumShards + (rawShardId >> timesResplit);
+    }
+
+    private int calculateShard(int hash, int originalNumShards, int routingNumShards, int currentNumShards) {
+        int routingShardId = Math.floorMod(hash, routingNumShards);
+        int originalRoutingFactor = routingNumShards / originalNumShards;
+
+        int originalShard = routingShardId / originalRoutingFactor;
+        int positionInOriginal = routingShardId % originalRoutingFactor;
+
+        int splitFactor = currentNumShards / originalNumShards;
+        int splitBucket = positionInOriginal / (originalRoutingFactor / splitFactor);
+
+        return originalShard + (splitBucket * originalNumShards);
+    }
+
+    int calculateShard2(int hash, int originalNumShards, int currentNumShards, int routingNumShards) {
+        int routingShardId = Math.floorMod(hash, routingNumShards);
+
+        int originalRoutingFactor = routingNumShards / originalNumShards;
+        int originalShard = routingShardId / originalRoutingFactor;
+        int positionInOriginal = routingShardId % originalRoutingFactor;
+
+        int splitDepth = Integer.numberOfTrailingZeros(currentNumShards / originalNumShards);
+        int bitsToShift = Integer.numberOfTrailingZeros(originalRoutingFactor) - splitDepth;
+        int splitOffset = positionInOriginal >> bitsToShift;
+
+        return originalShard + (splitOffset * originalNumShards);
+    }
+
+    int calculateShardI(int hash, int originalNumShards, int currentNumShards, int routingNumShards) {
+        int routingShardId = Math.floorMod(hash, routingNumShards);
+
+        // Start with original placement
+        int originalRoutingFactor = routingNumShards / originalNumShards;
+        int shard = routingShardId / originalRoutingFactor;
+
+        // Apply each doubling split incrementally
+        int numShards = originalNumShards;
+        while (numShards < currentNumShards) {
+            int routingFactor = routingNumShards / numShards;
+            int positionInShard = routingShardId % routingFactor;
+            int halfSize = routingFactor / 2;
+
+            // If in second half, move to split-off shard
+            if (positionInShard >= halfSize) {
+                shard = shard + numShards;
+            }
+
+            numShards *= 2;  // Double for next iteration
+        }
+
+        return shard;
+    }
+
+    private String ofSet(Set<Integer> set) {
+        if (set.isEmpty()) {
+            return "[]";
+        }
+        var sb = new StringBuilder();
+        sb.append("[");
+        var last = -100;
+        var list = set.stream().sorted().toList();
+        for (var v : set.stream().sorted().toList()) {
+            if (v != last + 1) {
+                if (last != -100) {
+                    sb.append("..");
+                    sb.append(last);
+                    sb.append(",");
+                }
+                sb.append(v);
+            }
+            last = v;
+        }
+        sb.append("..");
+        sb.append(list.getLast());
+        sb.append("]");
+        return sb.toString();
+    }
+
     // test that we can drive a split through all valid state transitions in random order and terminate
     public void testSplit() {
         final var numShards = randomIntBetween(1, 10);

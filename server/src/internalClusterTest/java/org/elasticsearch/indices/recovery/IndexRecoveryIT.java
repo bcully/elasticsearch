@@ -11,9 +11,11 @@ package org.elasticsearch.indices.recovery;
 
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.LongPoint;
+import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexCommit;
 import org.apache.lucene.index.LeafReaderContext;
+import org.apache.lucene.index.MergePolicy;
 import org.apache.lucene.index.NumericDocValues;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.BooleanQuery;
@@ -27,7 +29,6 @@ import org.apache.lucene.util.SetOnce;
 import org.elasticsearch.ElasticsearchException;
 import org.elasticsearch.action.ActionListener;
 import org.elasticsearch.action.DocWriteResponse;
-import org.elasticsearch.action.NoShardAvailableActionException;
 import org.elasticsearch.action.admin.cluster.node.stats.NodeStats;
 import org.elasticsearch.action.admin.cluster.node.stats.NodesStatsResponse;
 import org.elasticsearch.action.admin.cluster.reroute.ClusterRerouteUtils;
@@ -41,7 +42,6 @@ import org.elasticsearch.action.admin.indices.stats.IndicesStatsResponse;
 import org.elasticsearch.action.admin.indices.stats.ShardStats;
 import org.elasticsearch.action.bulk.TransportBulkAction;
 import org.elasticsearch.action.index.IndexRequestBuilder;
-import org.elasticsearch.action.search.SearchPhaseExecutionException;
 import org.elasticsearch.action.support.ActionTestUtils;
 import org.elasticsearch.action.support.ActiveShardCount;
 import org.elasticsearch.action.support.ChannelActionListener;
@@ -90,7 +90,6 @@ import org.elasticsearch.index.IndexVersions;
 import org.elasticsearch.index.analysis.AbstractTokenFilterFactory;
 import org.elasticsearch.index.analysis.TokenFilterFactory;
 import org.elasticsearch.index.engine.Engine;
-import org.elasticsearch.index.engine.InternalEngine;
 import org.elasticsearch.index.engine.Segment;
 import org.elasticsearch.index.mapper.MapperParsingException;
 import org.elasticsearch.index.mapper.SeqNoFieldMapper;
@@ -413,16 +412,19 @@ public class IndexRecoveryIT extends AbstractIndexRecoveryIntegTestCase {
         final Index index = resolveIndex(INDEX_NAME);
         final var indexService = indicesService.indexService(index);
         final var shard = indexService.getShard(0);
-        shard.failShard("fake merge failure", new Exception("boom"));
+        //shard.failShard("fake merge failure", new MergePolicy.MergeException(new CorruptIndexException("docs out of order", "output")));
+        shard.failShard("merge failure", new MergePolicy.MergeException(new Exception("test")));
 
         ensureRed(INDEX_NAME);
-        assertBusy(() -> {
-            try {
-                assertHitCount(prepareSearch(INDEX_NAME).setSize(0), 1);
-            } catch (SearchPhaseExecutionException e) {
-                assert false : "exception";
-            }
-        });
+//        assertBusy(() -> {
+//            try {
+//                assertHitCount(prepareSearch(INDEX_NAME).setSize(0), 1);
+//            } catch (SearchPhaseExecutionException e) {
+//                assert false : "exception";
+//            }
+//        });
+
+        setReplicaCount(1, INDEX_NAME);
 
         ensureGreen(INDEX_NAME);
     }

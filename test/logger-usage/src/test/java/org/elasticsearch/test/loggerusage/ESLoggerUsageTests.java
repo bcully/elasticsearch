@@ -156,37 +156,45 @@ public class ESLoggerUsageTests extends ESTestCase {
         logger.info("Hello {}, {}, {}", "world", 2, "third argument");
     }
 
-    public void checkFailNumberOfArguments2() {
-        logger.info("Hello {}, {}", "world", 2, "third argument");
-    }
+    // ideally this would fail, but we can't tell in general whether the final argument is a Throwable
+//    public void checkNumberOfArguments2() {
+//        logger.info("Hello {}, {}", "world", 2, "third argument");
+//    }
 
     public void checkNumberOfArguments3() {
         logger.info("Hello {}, {}, {}, {}, {}, {}, {}", "world", 2, "third argument", 4, 5, 6, new String("last arg"));
     }
 
-    public void checkFailNumberOfArguments3() {
-        logger.info("Hello {}, {}, {}, {}, {}, {}, {}", "world", 2, "third argument", 4, 5, 6, 7, new String("last arg"));
-    }
+    // ideally this would fail, but we can't tell in general whether the final argument is a Throwable
+//    public void checkFailNumberOfArguments3() {
+//        logger.info("Hello {}, {}, {}, {}, {}, {}, {}", "world", 2, "third argument", 4, 5, 6, 7, new String("last arg"));
+//    }
 
     public void checkOrderOfExceptionArgument() {
         logger.info("Hello", new Exception());
+    }
+
+    public void checkOrderOfExceptionArgumentWithMessage() {
+        logger.info("Hello {}", "world", new Exception());
     }
 
     public void checkOrderOfExceptionArgument1() {
         logger.info(() -> format("Hello %s", "world"), new Exception());
     }
 
-    public void checkFailOrderOfExceptionArgument1() {
-        logger.info("Hello {}", "world", new Exception());
-    }
+    // ideally this would fail, but we can't tell in general whether the final argument is a Throwable
+//    public void checkFailOrderOfExceptionArgument1() {
+//        logger.info("Hello {}", "world", new Exception());
+//    }
 
     public void checkOrderOfExceptionArgument2() {
         logger.info(() -> format("Hello %s, %s", "world", 42), new Exception());
     }
 
-    public void checkFailOrderOfExceptionArgument2() {
-        logger.info("Hello {}, {}", "world", 42, new Exception());
-    }
+    // ideally this would fail, but we can't tell in general whether the final argument is a Throwable
+//    public void checkFailOrderOfExceptionArgument2() {
+//        logger.info("Hello {}, {}", "world", 42, new Exception());
+//    }
 
     public void checkNonConstantMessageWithZeroArguments(boolean b) {
         logger.info(Boolean.toString(b), new Exception());

@@ -396,6 +396,14 @@ public class ESLoggerUsageChecker {
                 return;
             }
             if (logMessageLength.minValue != positionalArgsLength) {
+                if (logMessageLength.minValue + 1 == positionalArgsLength) {
+                    // The last argument may be a Throwable. It is hard to tell statically: the method
+                    // signature itself just takes Objects after a single argument.
+                    // Even if we inspect methodNode's previous instruction for the concrete
+                    // type we still would need to work out whether the concrete type was an instance of Throwable.
+                    // Returning here avoids false positives (in exchange for more potential false negatives)
+                    return;
+                }
                 wrongUsageCallback.accept(
                     new WrongLoggerUsage(
                         className,

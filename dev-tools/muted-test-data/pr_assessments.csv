@@ -1,0 +1,294 @@
+pr_number,assessment,rows_affected,title,brief_reason
+145905,likely_test_fix,30,SQL: Jdbc tests: reuse remaining context check,Adds retry-within-timeout to SQL JDBC test check on pending open contexts
+153372,likely_test_fix,24,ESQL:DS: Fix Parquet tests failing on test files download,Fixes Parquet test file download failures; makes test data loading resilient
+157055,likely_test_fix,23,JDK 27 EA compatibility fixes,"Body describes fixing/unmuting test code, no production bug described"
+152268,likely_test_fix,23,Increase ES|QL csv-spec suite timeouts across the board,"Body describes fixing/unmuting test code, no production bug described"
+150142,likely_test_fix,18,[ESQL][PromQL] Gate scalar_float_div_half on time-bucket capability,Adds missing required_capability gate to PromQL CSV spec case for BWC
+147148,likely_test_fix,17,[ESQL] Fix Windows path separators in fixture loading,"Body describes fixing/unmuting test code, no production bug described"
+143641,likely_test_fix,16,Relax floating point precision in sum tests,Relaxes floating-point sum bounds in CsvIT because non-forced-merge segments sum in non-deterministic order
+156367,likely_test_fix,15,"Revert ""Consolidate fallback storage routing logic into central location"" and unmute tests",Title describes a test/unmute fix
+143562,likely_test_fix,14,ESQL: Catch more acceptable errors and unmute GenerativeIT,Title describes a test/unmute fix
+146998,likely_test_fix,12,Fix PromQL hour/minute CSV tests for BWC,"Body describes fixing/unmuting test code, no production bug described"
+153321,likely_test_fix,12,ESQL: Fixup AllSupporterFieldITs,Fixes AllSupporterFieldITs to handle date_range and logsdb feature releases
+149941,likely_test_fix,11,ES|QL: version-gate the LIKE→Contains rewrite for cross-cluster queries,"Body describes fixing/unmuting test code, no production bug described"
+146620,likely_test_fix,11,ES|QL: Fix text_embedding tests,Fixes text_embedding test failures after embedding API changes
+148390,likely_test_fix,10,ESQL: Generative random mapping IT unmute for logicalplan optimization-related issues,Title describes a test/unmute fix
+151000,likely_test_fix,10,Fix EsqlSpecForceStoredLoadingIT,Fixes EsqlSpecForceStoredLoadingIT by closing multiple test failure issues
+144233,likely_test_fix,10,Fix approximation csvtests,Relaxes too-tight bounds in approximation CSV tests
+145394,likely_test_fix,9,Fix EsqlSpecForceStoredLoadingIT + query approximation tests,Fixes EsqlSpecForceStoredLoadingIT and query approximation tests
+154082,likely_test_fix,6,ES|QL: unmute generative tests,Title describes a test/unmute fix
+153766,likely_test_fix,6,ES|QL: fix and unmute generative tests,Title describes a test/unmute fix
+149163,likely_test_fix,6,Unmute ArrayObjectsLimitIT tests - make DocumentParsingException a MapperException,Title describes a test/unmute fix
+144974,likely_test_fix,6,ESQL: Fix `TestAnalyzer#stripErrorPrefix`,Fixes TestAnalyzer#stripErrorPrefix incorrectly stripping chars when pattern not present
+144852,likely_test_fix,6,ESQL: DS: Add more EXTERNAL tests,Adds EXTERNAL data source tests
+158539,likely_test_fix,5,ESQL: Covert knn none deterministic test cases to stable,Title describes a test/unmute fix
+149469,likely_test_fix,5,[ESQL] Fix Windows glob path resolution in spec tests,"Body describes fixing/unmuting test code, no production bug described"
+143854,likely_test_fix,5,[TEST] More CsvIT flakiness fixes,Title describes a test/unmute fix
+152630,likely_test_fix,5,Fix KeyRotationIT,Fixes KeyRotationIT @After to wait for in-flight coordinator tasks before assertions
+146494,likely_test_fix,5,ESQL: Ignore errors from new known bugs in generative testing,Adjusts generative IT to ignore errors from known production bugs
+158443,likely_test_fix,4,ES|QL: Stabilize T-Digest bucket count test,"Body describes fixing/unmuting test code, no production bug described"
+148141,likely_test_fix,4,Unmute 'Test mv_min' and 'Test avg length' yaml tests.,Title describes a test/unmute fix
+145330,likely_test_fix,4,Fix SeekCeil by truncated term in TSDBSyntheticIdFieldsProducer,"Body describes fixing/unmuting test code, no production bug described"
+154833,likely_test_fix,4,Fix SearchableSnapshotsRollingUpgradeIT,Migrates SearchableSnapshotsRollingUpgradeIT to JUnit rule framework to fix CI smart-retry issues
+153666,likely_test_fix,4,ES|QL:Fix external source IT fixture startup order,Fixes test fixture startup race: chains S3/GCS/Azure fixtures before cluster start
+153080,likely_test_fix,4,Fix CcrRollingUpgradeIT tests - migrate to Junit ClassRule framework,Migrates CcrRollingUpgradeIT from Gradle-based to JUnit ClassRule framework
+151740,likely_test_fix,4,Use percent instead of fixed delta for floating point error,Changes fixed delta to percent delta for floating-point error comparison in tests
+146075,likely_test_fix,4,ESQL: Generative testing with unmapped_field=load refinement,Refines generative testing with unmapped_field=load to ignore expected failures
+145463,likely_test_fix,4,Skip EsqlSpecForceStoredLoadingIT for approximation tests,Skips EsqlSpecForceStoredLoadingIT for approximation tests
+144546,likely_test_fix,4,Fix ignored_source_as_doc_values feature flag handling in tests.,Fixes ignored_source_as_doc_values feature flag handling in tests
+154128,likely_test_fix,3,unmute KeyRotationITs,Title describes a test/unmute fix
+152837,likely_test_fix,3,[ESQL] Normalize local StorageObject path for stats reconcile,"Body describes fixing/unmuting test code, no production bug described"
+156308,likely_test_fix,3,Add sort into k8s-misc.csv-spec,Adds sort to k8s-misc csv-spec to stabilize order
+151202,likely_test_fix,3,Improve CSV tests for approximation with STATS BY,Improves CSV tests for approximation with STATS BY
+147075,likely_test_fix,3,Add missing test feature for keyword skip store parameter,Adds missing node feature for keyword normalizer_skip_store_original_value BWC gating
+146633,likely_test_fix,3,"ESQL: Remove  match_only_text from ""store"" setting candidates for generative random mappings tests",Removes match_only_text from generative random mappings to avoid store-setting conflicts
+147054,likely_test_fix,3,Add mapper feature for ignored fields stored in binary doc values,Adds node feature to gate ignored-fields binary doc values tests for BWC
+144310,likely_test_fix,3,ES|QL StatementParser LIMIT BY tests in snapshot builds only,Gates ES|QL LIMIT BY statement tests to snapshot builds only
+143425,likely_test_fix,3,[GPU] Fix GPU plugin integration tests,Refactors GPU plugin to abstract GPUSupport through interface primarily to fix integration tests
+154479,likely_test_fix,2,Fix flaky CCS cluster metadata test,Title describes a test/unmute fix
+155460,likely_test_fix,2,Use ranges for PromQL histogram CSV tests,"Body describes fixing/unmuting test code, no production bug described"
+153996,likely_test_fix,2,[PromQL] support `date_nanos` timestamp indices,"Body describes fixing/unmuting test code, no production bug described"
+154476,likely_test_fix,2,ESQL: Fix request breaker leak in lookup queries,"Body describes fixing/unmuting test code, no production bug described"
+152275,likely_test_fix,2,Fix flaky tests in ST_INTERSECTION,Title describes a test/unmute fix
+153294,likely_test_fix,2,Unmute tests for diskbbq overspill bugs,Title describes a test/unmute fix
+152706,likely_test_fix,2,Fix columnar_stored source for nested sub-objects,"Body describes fixing/unmuting test code, no production bug described"
+152835,likely_test_fix,2,[ESQL] Fix Zstd DStream VarHandle offset on JDK 21,"Body describes fixing/unmuting test code, no production bug described"
+149323,likely_test_fix,2,Update RuleQueryBuilder to eagerly rewrite organic query,"Body describes fixing/unmuting test code, no production bug described"
+150027,likely_test_fix,2,Fix intoBitSet contract violation in TSDB range iterator,"Body describes fixing/unmuting test code, no production bug described"
+147245,likely_test_fix,2,ESQL: gate external-basic BWC on KEYWORD-only cap,"Body describes fixing/unmuting test code, no production bug described"
+144396,likely_test_fix,2,Fix flaky EmployeeFlightServerTests Netty callback timing,Title describes a test/unmute fix
+143805,likely_test_fix,2,[TEST] Add rounding to time series agg results,"Body describes fixing/unmuting test code, no production bug described"
+154491,likely_test_fix,2,Fixed IpFieldBlockLoaderTests test failures,Fixes IpFieldBlockLoaderTests by correcting DefaultMappingParametersHandler multi_value=false+on_failure=ignore interaction
+153995,likely_test_fix,2,ESQL: Fix CHANGE_POINT tests in light of non-deterministic sum order,Adjusts CHANGE_POINT test assertions for non-deterministic floating-point sum order
+152907,likely_test_fix,2,Fix resharding tests following a change to retry start split requests on the target shard,Fixes resharding tests after retry-on-failure change to split request handling
+151621,likely_test_fix,2,Fix permit leak in snapshot stress test poller,Fixes permit leak in snapshot stress test poller by retrying on NodeClosedException instead of failing
+151644,likely_test_fix,2,reduce memory footprint of approximation CSV tests,Reduces memory footprint of approximation CSV tests
+150907,likely_test_fix,2,Use the real time for Last-Modified in blob store mocks.,"Fixes blob store mock returning current time as Last-Modified instead of stored time, causing test flakiness"
+147154,likely_test_fix,2,Add missing feature flag check to testOffsetArrayRandomHighCardinality,Adds missing feature flag check to testOffsetArrayRandomHighCardinality for BWC
+149262,likely_test_fix,2,[Test] Compare double values within precision,Updates double comparison to use precision delta in test
+147338,likely_test_fix,2,Fix sparklineComplexWithGrouping test,Wraps SIN with ROUND in sparkline test to produce deterministic results across single/multi-node setups
+147189,likely_test_fix,2,Add node feature for data stream mappings api,Adds node feature gate for data stream mappings API BWC
+146133,likely_test_fix,2,Fix test: wait for global checkpoint to be synced for each shard,Fixes flaky test assertion for async global checkpoint sync using listener-based approach
+159199,likely_test_fix,1,bug(promql): fix flaky canonical test,Title describes a test/unmute fix
+154791,likely_test_fix,1,Add transient-404 retry primitive for rolling-upgrade ML REST tests,"Body describes fixing/unmuting test code, no production bug described"
+158620,likely_test_fix,1,[TEST] Ignore bilateral failures in CrossIndexModeGenerativeIT,"Body describes fixing/unmuting test code, no production bug described"
+158619,likely_test_fix,1,ESQL: cap DOC slices for tiny multi-seg indices,"Body describes fixing/unmuting test code, no production bug described"
+158238,likely_test_fix,1,Pin transport version in IgnoreNullMetrics dimension test,"Body describes fixing/unmuting test code, no production bug described"
+157128,likely_test_fix,1,Add extra information in the rate grouping assertion,"Body describes fixing/unmuting test code, no production bug described"
+158208,likely_test_fix,1,Fixed flaky test SmokeTestMultiNodeClientYamlTestSuiteIT,Title describes a test/unmute fix
+157891,likely_test_fix,1,ESQL: Fix inference tolerate-failures race,"Body describes fixing/unmuting test code, no production bug described"
+157835,likely_test_fix,1,Respect experimental_features setting in DiskBBQPlugin,"Body describes fixing/unmuting test code, no production bug described"
+157857,likely_test_fix,1,Fix ArrayOrder block loaders falsely claiming SORTED_ASCENDING,"Body describes fixing/unmuting test code, no production bug described"
+157541,likely_test_fix,1,Fix test 340_flattened failures in BWC and Serverless ,"Body describes fixing/unmuting test code, no production bug described"
+156993,likely_test_fix,1,Unmute CrossIndexModeGenerativeIT,Title describes a test/unmute fix
+156903,likely_test_fix,1,Fix synthetic id seekCeil skipper overshoot,"Body describes fixing/unmuting test code, no production bug described"
+153893,likely_test_fix,1,ESQL: Fix flaky test,Title describes a test/unmute fix
+156268,likely_test_fix,1,Fix histogram min/max not being fully respected in rank estimation,"Body describes fixing/unmuting test code, no production bug described"
+156156,likely_test_fix,1,Avoid unsafe cluster state read in BatchedRerouteService - unmute test,Title describes a test/unmute fix
+155423,likely_test_fix,1,[Test] Fix flaky `StatelessReshardIT::testExplainApi`,Title describes a test/unmute fix
+157308,likely_test_fix,1,Add clientAuth usage to test TLS certificates,"Body describes fixing/unmuting test code, no production bug described"
+154958,likely_test_fix,1,ES|QL [CI] Fix replaceUnmappedFieldFromEmptyMapping non-deterministic order in CCQ,"Body describes fixing/unmuting test code, no production bug described"
+154953,likely_test_fix,1,Fix flaky TransportFetchPhaseCoordinationActionTests deregistration check,Title describes a test/unmute fix
+154712,likely_test_fix,1,Fix VotingOnlyNodePluginTests.testBootstrapOnlyVotingOnlyNodes ,"Body describes fixing/unmuting test code, no production bug described"
+154316,likely_test_fix,1,Fix race in search shard recovery duration metrics,"Body describes fixing/unmuting test code, no production bug described"
+150582,likely_test_fix,1,Fix search origin metric attribute bug and telemetry test flakiness,Title describes a test/unmute fix
+153619,likely_test_fix,1,"Add assertions for timestamp bucketing consistency, unmute downsample IT",Title describes a test/unmute fix
+152610,likely_test_fix,1,Fix stale role cache after invalidation,"Body describes fixing/unmuting test code, no production bug described"
+153162,likely_test_fix,1,Fix columnar_stored nested stored fields,"Body describes fixing/unmuting test code, no production bug described"
+152836,likely_test_fix,1,[ESQL] Fix ExternalSourceExec BWC serialization test types,"Body describes fixing/unmuting test code, no production bug described"
+152380,likely_test_fix,1,Fix ingest pipeline race that fails IP-location service,"Body describes fixing/unmuting test code, no production bug described"
+150656,likely_test_fix,1,Fix JDK 21 FFM regressions in zstd native binding,Body focuses on test changes despite production title keywords
+151186,likely_test_fix,1,Fix flaky testWaitUntilShouldNotWaitForUpload,Title describes a test/unmute fix
+150384,likely_test_fix,1,[Inference API] Fixing flaky queue size test,Title describes a test/unmute fix
+149719,likely_test_fix,1,Fix testReindexFailsWhenPitRelocationFails for search_context_missing_exception,"Body describes fixing/unmuting test code, no production bug described"
+149660,likely_test_fix,1,ESQL: anchor CSV row errors in fused fast path too,"Body describes fixing/unmuting test code, no production bug described"
+149611,likely_test_fix,1,"ESQL:DS: Unmute CsvCompressedFormatSpecIT, enforce fix",Title describes a test/unmute fix
+149274,likely_test_fix,1,[Inference] Fix batched deploy inference race in DefaultEndPointsIT,"Body describes fixing/unmuting test code, no production bug described"
+148776,likely_test_fix,1,Unmute reshard metrics test,Title describes a test/unmute fix
+147701,likely_test_fix,1,Helpful logging for NPE investigation,Body focuses on test changes despite production title keywords
+147869,likely_test_fix,1,Unmute testTranslogIsolatedNodeOnlyStressRecoveryTest,Title describes a test/unmute fix
+145514,likely_test_fix,1,[ML] Fix scroll context leak in CCS datafeed extraction,"Body describes fixing/unmuting test code, no production bug described"
+145272,likely_test_fix,1,[ML] Tolerate unavailable ML stats shards when loading DFA progress,"Body describes fixing/unmuting test code, no production bug described"
+145597,likely_test_fix,1,"Revert ""PromQL: assert output() is called on resolved plans in AcrossSeriesAggregate (#145525)""","Body describes fixing/unmuting test code, no production bug described"
+145167,likely_test_fix,1,Sort DFA reindex by _doc for stable train/test split,"Body describes fixing/unmuting test code, no production bug described"
+145174,likely_test_fix,1,ESQL: Fix Windows path handling and ExtraFS filtering in local storage tests,"Body describes fixing/unmuting test code, no production bug described"
+143637,likely_test_fix,1,"Make AzureClientProvider shutdown more graceful, unmute test",Title describes a test/unmute fix
+145020,likely_test_fix,1,Test that downsampling counters with the aggregate method is more acc…,"Body describes fixing/unmuting test code, no production bug described"
+143186,likely_test_fix,1,Unmute mixed-cluster spatial parse warning test,Title describes a test/unmute fix
+158679,likely_test_fix,1,Ensure idle master in `TestCluster#wipe`,Ensures master is idle before test cleanup in TestCluster#wipe to avoid missing newly-created items
+155773,likely_test_fix,1,Fix CircleUtilsTests to measure with production's haversine,Fixes CircleUtilsTests to measure polygon vertex distance with production haversine instead of test-only StrictMath formula
+156528,likely_test_fix,1,[TEST] add differential generative test for columnar vs standard mode,Adds differential generative test comparing columnar vs standard index mode results
+156674,likely_test_fix,1,Fix SharedBlobCacheWarmingServiceTests testOfflineWarmingRatioAndBytesMetrics,Records blob cache warming metric in runBefore so tests reliably observe it before listener fires
+153984,likely_test_fix,1,Fix ClusterInfoServiceIT testMaxQueueLatenciesInClusterInfo,Fixes ClusterInfoServiceIT by rewiring GlobalCheckpointSyncAction to maintain WRITE thread pool quietness
+154170,likely_test_fix,1,Fix CC-unsafe provider in ElasticsearchCluster.module(TaskProvider<Sync>),Fixes Gradle configuration cache unsafe provider in ElasticsearchCluster.module for Gradle 9.5+
+148658,likely_test_fix,1,[Gradle] Migrate :qa:remote-clusters from TestFixturePlugin to Testcontainers,Migrates :qa:remote-clusters from TestFixturePlugin to Testcontainers
+153488,likely_test_fix,1,Update delta comparison for ES92Int7 test assertions,Updates ES92Int7 vector test assertions to use delta-based comparison after score range change
+153225,likely_test_fix,1,[CI] DLMFrozenTransitionDisruptionIT testDeleteMountedFrozenIndexBeforeSwap failing [#153040],Fixes DLMFrozenTransitionDisruptionIT by stopping DLM frozen transition retry after test deletion
+151443,likely_test_fix,1,Fix WriteLoadForecasterIT.testWriteLoadForecastGetsPopulatedDuringRollovers,Fixes WriteLoadForecasterIT TOCTOU race between test and allocation tasks triggering refreshLicense
+151469,likely_test_fix,1,ESQL: CsvFlattenedKeywordIT view test failures,Skips CsvFlattenedKeywordIT view tests in flattened mode after conflicting PRs landed
+150388,likely_test_fix,1,Fix MockRepository delete TOCTOU race,Fixes TOCTOU race in MockBlobContainer.delete when FsBlobStore.blobContainer calls Files.createDirectories
+150509,likely_test_fix,1,SQL: fix test check on open search contexts,Fixes SQL test check on open search contexts to properly handle async sync
+150304,likely_test_fix,1,Fix transport version test failures caused by stale git state cache,Fixes TransportVersionResourcesService stale git-state cache in validate task after generate task writes files
+148993,likely_test_fix,1,[ML] Wait for shards in tests,Adds shard-readiness wait in ML rolling upgrade tests
+149644,likely_test_fix,1,ESQL: Fix a flattened test,Fixes ESQL flattened field test by sorting on tie-breaking column
+148643,likely_test_fix,1,Fixing ReindexRelocationOnShutdownIT.testReindexTaskRelocatesOnNodeShutdown(),Fixes ReindexRelocationOnShutdownIT rethrottle helper to target correct task when de-duplication returns stale entry
+148874,likely_test_fix,1,Ensure that test polygons are valid for lucene tesselator,Removes colinear-point polygons from test data to prevent Lucene tessellator failures
+148322,likely_test_fix,1,Fix testGenerationalFileBlobReferenceIsRetainedCor,Fixes testGenerationalFileBlobReferenceIsRetainedCorrectly by adjusting deletion timing and wait
+147501,likely_test_fix,1,Add missing node feature for skip store ignored keyword multi fields,Adds missing node feature gate for keyword skip-store ignored multi-fields BWC
+147235,likely_test_fix,1,fix ApproximationGoldenTests,Fixes ApproximationGoldenTests
+147045,likely_test_fix,1,Add test feature for ip cardinality option,Adds node feature gate for ip field doc values cardinality option BWC tests
+146679,likely_test_fix,1,Make AzureHttpFixture multi-threaded,Makes AzureHttpFixture multi-threaded to prevent deadlock when BlobAnalyzeAction triggers copyBlob from upload handler
+145391,likely_test_fix,1,[ESQL] Fix release tests,Fixes ESQL release test configuration
+144928,likely_test_fix,1,Change the approach to find the APM Agent property file in test,Changes APM agent property file lookup in tests to match production deletion approach
+144882,likely_test_fix,1,[TEST] Add rounding to avg_over_time tests,Adds rounding to avg_over_time PromQL tests to handle floating-point error from absent segment merging
+144193,likely_test_fix,1,Trigger counter metrics in test for delta temporality measurements,Makes delta temporality test more reliable by incrementing counter and catching exceptions
+139643,likely_test_fix,1,Make XPackUsageResponseTests a wire serializing test case,Replaces meaningless XPackUsageResponseTests with generic wire serialization test
+143886,likely_test_fix,1,Fix logging test SearchLoggingIT,Fixes SearchLoggingIT by changing shard allocation and improving time measurements
+143528,likely_test_fix,1,ESQL: Restore longer test timeout,Restores 3-minute timeout for ValuesSourceReaderTypeConversionTests to prevent rare CI failures
+143529,likely_test_fix,1,Fixed logsdb rolling upgrade test failures,Ensures unique random strings in logsdb rolling upgrade test to prevent duplicate value assertion failures
+148277,unclear,4,ESQL: Try to bypass jvm recompilation probably-bug,Workaround for probable JVM recompilation bug; too sparse to classify
+144635,unclear,1,ES|QL query approximation improvements,ES|QL query approximation improvements; too sparse to determine test vs production
+156617,confirmed_production,58,ESQL: Fix BWC warning propagation,Fixes BWC warning propagation bug: new coordinator silently dropping warnings when switching threads
+150775,confirmed_production,24,"[ES|QL] External source stats: reconcile by coverage range, not scan count",Fixes EXTERNAL source double-counting rows in compressed files due to reconciler summing contributions across multiple scans
+146984,confirmed_production,17,[ESQL] Replace hadoop-shaded-guava and hadoop-hdfs-client with stub classes for ORC,Replaces hadoop JARs with stubs to prevent NoClassDefFoundError crashing the ES node at runtime
+150241,confirmed_production,14,Slice: fix off-by-one error for slice refactor,Fixes off-by-one error in slice refactor: single-slice single-doc case was not being hit
+143585,confirmed_production,10,ESQL: Fix missing Lookup Join Warnings,Fixes race condition where Lookup Join Warnings are not always propagated to StreamingLookupFromIndexOperator
+145525,confirmed_production,9,PromQL: assert output() is called on resolved plans in AcrossSeriesAggregate,Adds assertion to QueryPlan#output to reject unresolved attributes in output stream instead of silently accepting them
+158052,confirmed_production,7,[ESQL] Fix multifile check in windows,Fixes Windows path handling for multifile storage: Illegal char <:> on Windows directories
+147331,confirmed_production,7,"[ES|QL] Add TSTEP(step, from, to) explicit bounds variant","Adds TSTEP(step, from, to) explicit bounds variant as new production ESQL feature"
+144040,confirmed_production,7,Drop deprecation warnings when updating a mapping in the cluster state applier (#143884),Fixes deprecation warnings from aggregate_metric_double incorrectly leaking into unrelated requests via cluster state applier
+150704,confirmed_production,6,[ES|QL] Make subquery with mixed data type across branches behave more consistently with nullify,Fixes ESQL subquery with mixed counter data types failing VerificationException when unmapped_field=nullify
+156015,confirmed_production,4,Fix DOT_PRODUCT and COSINE score clamping in BBQ vector scorer,Fixes DOT_PRODUCT and COSINE clamping order in BBQ vector scorer
+153410,confirmed_production,4,Use atomic reference counting for blocks and vectors,Adds thread-safe atomic reference counting to ESQL blocks for parallel TopN shared blocks
+147855,confirmed_production,4,Fix SearchHit leak in chunked fetch failure cleanup path,Fixes SearchHit memory leak in chunked fetch failure cleanup path
+145482,confirmed_production,4,ESQL: DS: Fix NPE when S3 list omits LastModified,Title clearly describes a production bug fix
+157750,confirmed_production,3,Fix recently uploaded vbcc cleanup,Fixes race condition in recently-uploaded vbcc cleanup causing assertion failures
+156632,confirmed_production,3,Fix dotProduct offset short-circuit for mismatched array lengths,"Fixes dotProduct short-circuit incorrectly ignoring b.length mismatch, causing VectorUtil dimension exception"
+153171,confirmed_production,3,Fix inlinestats double release,Fixes double release bug in INLINE STATS when Lookup Join blocks shared across threads
+152097,confirmed_production,3,"Revert ""Use a bulk scorer for rescoring vectors""",Reverts bulk-scorer rescoring change that caused exhausted-iterator errors for some random seeds
+149178,confirmed_production,3,Use a single MeterProvider for all OTel metrics,Fixes OTel MeterProvider cycle by using single provider; resolves buffering exporter issues
+150293,confirmed_production,3,Fixed doc values leak in some block loaders,Fixes doc values leak in offsets-aware and aggregate_metric_double block loaders on field load failure
+147673,confirmed_production,3,Fix SearchHit ref-count leak in chunked fetch coordinator path,Fixes SearchHit ref-count leak on coordinator chunked-fetch path detected by leak tracker
+143816,confirmed_production,3,[ES|QL]  Split large page in ValuesFromManyReader,Splits large pages in ValuesFromManyReader to prevent CircuitBreaker exceptions in streaming path
+152679,confirmed_production,3,Deflake FUSE multivalued-group warning tests,Body describes fixing incorrect production behavior
+150271,confirmed_production,3,Fix a race condition in SourceSplitService,Title clearly describes a production bug fix
+146190,confirmed_production,3,[ES|QL] Fix a bug in parsing index pattern and subquery in convertSubqueryToRemoteIndices used by MultiClusterSpecIT,Title clearly indicates a production bug fix; body too sparse for detail
+159095,confirmed_production,2,Use separate thread local buffer for Streams.copy,Fixes Streams.copy/Streams.read sharing same thread-local buffer causing data corruption when nested
+157790,confirmed_production,2,Fix mv_min/mv_max on columnar ip fields,Fixes MV_MIN/MV_MAX pushdown loaders for columnar ip fields parsing ArrayOrderInlineNull format incorrectly
+154668,confirmed_production,2,ES|QL: reduce stack depth for function parsing,Reduces ESQL function parsing stack depth to prevent StackOverflowError on complex queries
+150342,confirmed_production,2,Eagerly fail reindexes that are unable to be relocated,Fixes reindex tasks not failing eagerly when unable to relocate on node shutdown
+153119,confirmed_production,2,Fix assertion race in ProgressListenableActionFuture split,Fixes race in ProgressListenableActionFuture split by serializing onProgress delivery
+153560,confirmed_production,2,[ES|QL] Improve convertSubqueryToRemoteIndices to not duplicate indices created on both clusters,Fixes convertSubqueryToRemoteIndices incorrectly duplicating indices present on both clusters
+152434,confirmed_production,2,[Docs] Adding documentation for PromQL operators,"Adds missing stack-availability metadata for PromQL histogram functions in docs, fixing muted test"
+153484,confirmed_production,2,ES|QL: Handle TopologyException in binary spatial geometry ops,"Catches JTS TopologyException in binary spatial geometry ops, returning null+warning instead of crashing"
+153584,confirmed_production,2,Fix Math.clamp min > max in supplementCentroids,Fixes Math.clamp min>max in HierarchicalKMeans.supplementCentroids for small segments (<4096 vectors)
+153402,confirmed_production,2,ESQL:DS: Fix leaked pages on AsyncExternalSourceBuffer,Fixes leaked pages in AsyncExternalSourceBuffer when discardPages() skipped after CAS race on close
+152593,confirmed_production,2,Add retries for TransportReshardSplitAction performed by split target shard,Adds retries for TransportReshardSplitAction on shard split failures
+152692,confirmed_production,2,[Inference API] Fix ModelRegistryIT failures when endpoints are indexed,Moves doc_type guards into reused ModelRegistry method so tests cannot bypass them
+152649,confirmed_production,2,Inference model loading failure should return 500,Fixes inference model loading failure to return HTTP 500 instead of incorrect status code
+150961,confirmed_production,2,Handle single centroid edge case for soar assert,Handles single-centroid edge case in SOAR clustering to avoid assertion error when all clusters are empty
+150945,confirmed_production,2,Fix BlockHashRandomizedTests,Fixes LongIntAdaptiveBlockHash emitting incorrect batch sizes differing from specified emitBatchSize
+148503,confirmed_production,2,Reset routing DV slot in LuceneChangesSnapshot,Fixes stale routing ordinal reuse in LuceneChangesSnapshot for tombstone documents without _routing doc values
+149041,confirmed_production,2,SnapshotsCommitService releases commit without assuming snapshot completion,Fixes SnapshotsCommitService releasing commit while assuming snapshot completion after shard relocation
+148285,confirmed_production,2,Fix testConfiguredReservedRolesAfterClosingAndOpeningIndex - Take 2,Fixes reserved-roles sync race: MarkRolesAsSyncedTask now checks if index is closed before syncing
+147678,confirmed_production,2,Fix race in TickerScheduleTriggerEngine by checking watcher to node allocation,Fixes race in TickerScheduleTriggerEngine where watcher-to-node allocation is not re-checked on restart
+147394,confirmed_production,2,"Re-apply ""Enforce single values for text fields and ip fields when multi_value=no is configured in the mapping (multi_va",Re-applies enforcement of single values for text and ip fields when multi_value=no after revert
+145325,confirmed_production,2,Clear watch schedules when starting trigger engine,Fixes watcher scheduling: multiple nodes could execute same watch when node allocation changes without schedule reset
+144453,confirmed_production,2,Fix createLDAPCertStore failing in FIPS mode (#144376),Fixes FIPS-mode LDAP CertStore treating NoSuchAlgorithmException as entitlement denial and returning HTTP 403
+141242,confirmed_production,2,Deep copy BytesRef when creating a constant vector block,"Fixes missing deep copy of BytesRef in constant vector block, causing data sharing and incorrect values"
+143267,confirmed_production,2,ESQL: Fix Driver search load millis as nanos bug,Title clearly describes a production bug fix
+158153,confirmed_production,1,[ESQL] Fix parquet dict offset 0 prefetch,"Fixes Parquet LIMIT prefetch treating missing dictionary_page_offset as file offset 0, slicing PAR1 magic and causing HTTP 500"
+158880,confirmed_production,1,ESQL:DS: Make a remote dataset invisible instead of failing the query,Fixes remote dataset failing unrelated queries: now renders the remote dataset invisible instead of propagating error
+157914,confirmed_production,1,Remove columnar's on_failure feature flag,Removes on_failure feature flag from columnar mode now that both write and read sides are implemented
+158468,confirmed_production,1,ESQL:DS: Hive warnings through completion info,Fixes Hive partition-shadow warnings being discarded by ContextPreservingActionListener close during async resolve
+157576,confirmed_production,1,Fix IndexingShardCacheBlobReader obsolete stream closed assert,Relaxes too-strict closure assertion in IndexingShardCacheBlobReader for multi-gap cache-fill path
+157681,confirmed_production,1,Avoid race closing PIT contexts on node switch,Fixes PIT context close race when two search threads share stale PIT id across node switch
+158016,confirmed_production,1,Fix SAML metadata resolver destroy/refresh race,"Fixes SAML metadata resolver destroy/refresh race: OpenSAML 5 asserts nextRefresh!=null in finally, which destroy() nulls"
+157475,confirmed_production,1,ESQL: Fix `isPartial` flag handling,Fixes data race on isPartial flag update causing false false result when remotes have partial failures
+155934,confirmed_production,1,Fix SLM races that mis-record concurrent snapshot outcomes,"Fixes several SLM stats races: TOCTOU false-failure, double-counting, concurrent completion"
+156343,confirmed_production,1,Wire ._on_failure through synthetic source,Wires ._on_failure sidecar column into synthetic/columnar_stored source reconstruction (values were silently dropped on read)
+149429,confirmed_production,1,Fixing StatelessTranslogIT.testTranslogLocalFailureOnlyStressRecoveryTest(),Fixes NodeTranslogBuffer.complete() resource leak on exception during compound header/body allocation
+156793,confirmed_production,1,Fix stale columnar id slot in LuceneChangesSnapshot,"Fixes stale columnar _id slot in LuceneChangesSnapshot: NO_OP tombstones retain previous BytesRef, misidentified as DELETE"
+156591,confirmed_production,1,Fix assertion: XContentGenerator structural check,Fixes broken assertion in XContentGenerator structural check introduced by #156382
+156635,confirmed_production,1,Cache computed write load proportions in RoutingAllocation,Caches computed write load proportions in RoutingAllocation to avoid recomputing expensive proportions
+156515,confirmed_production,1,Improve failure handling for shards,Improves shard failure handling to use informative exceptions instead of asserts that swallow failures
+155459,confirmed_production,1,Fix exponential histogram merging with zero bucket overlap,"Fixes exponential histogram merge not combining zero bucket thresholds, violating no-overlap invariant"
+155307,confirmed_production,1,Revert #155195,Reverts production change that introduced a regression
+155182,confirmed_production,1,Fixing StatelessHollowIndexShardsIT.testStressWithRelocationOrObjectStoreFailures(),Fixes unhollow/relocation race in HollowShardsService causing incorrect hollow=true state after relocation
+154492,confirmed_production,1,Don't abort merges if they are already finished,Prevents aborting merges that have already finished to avoid spurious errors
+154872,confirmed_production,1,Fix double sourceRecoveryCompleted in relocation,Fixes double decrement of sourceRecoveryCompleted counter when relocation races with index close
+153983,confirmed_production,1,[Test] Fix ConcurrentModificationException in merge cache warming,Fixes ConcurrentModificationException in SharedBlobCacheWarmingService iterating SegmentCommitInfo.files concurrently
+154195,confirmed_production,1,Fixing ReplicationTracker behavior when a replica recovery is cancelled,Fixes ReplicationTracker bug where cancelled recovery leaves allocationId in pendingInSync and skips updateGlobalCheckpointOnPrimary
+153029,confirmed_production,1,ESQL:DS: Fix emission of Warnings,Fixes warning emission in ESQL datasource by routing warnings through async buffer to re-emit on driver thread
+147754,confirmed_production,1,[Transform] Retry audit index creation,Refactors ML auditor to retry index creation using RetryableAction to fix lost audit messages on startup
+152953,confirmed_production,1,Fix fetch-phase store_bytes_read miscount,Fixes store_bytes_read miscount caused by reading thread-local counter on different thread after callback
+152711,confirmed_production,1,Check success before forwarding to the original progress listener,Fixes progress listener forwarding to check success before calling original consumer
+158391,confirmed_production,1,ESQL:DS: Drain buffered Parquet rows after TopN early-stop,Fixes OptimizedParquetColumnIterator NoSuchElementException when concurrent NULLS FIRST flip occurs on already-decoded batch
+152680,confirmed_production,1,Add map equality for asserts,Fixes assertion to use map equality for seq-number dedup when byte equality fails due to batch reconstruction
+152757,confirmed_production,1,Dispatch remote cluster connection failures on response executor,Fixes remote cluster connection failures being dispatched on wrong executor
+152405,confirmed_production,1,Fix empty DocIdSetIterator behaviour for exponential_histogram field type,Fixes ExponentialHistogramFieldMapper DocValuesReader violating DocIdSetIterator contract by starting at NO_MORE_DOCS
+152289,confirmed_production,1,Fix reader context close race in markAsUsed,Fixes reader context close race in markAsUsed that throws raw IllegalStateException instead of context-gone signal
+152127,confirmed_production,1,Extend isPatchFrom to use 1000-slot patch space,Aligns isPatchFrom to use 1000-slot patch space matching Gradle build tooling
+152107,confirmed_production,1,Fix ThrottlingRecoveryService thread context leak,Fixes ThrottlingRecoveryService leaking releasing thread's X-Elastic-Project-ID header into queued recovery context
+151822,confirmed_production,1,Fix under-counting in LuceneCountOperator,Fixes LuceneCountOperator under-counting with doc-partitioning when segment is being cached
+151849,confirmed_production,1,AbstractIVFKnnVectorQuery should resolve segment config from leaf reader,Fixes AbstractIVFKnnVectorQuery resolving segment config from leaf reader rather than field info
+149421,confirmed_production,1,ES|QL: add IP_LOCATION command,Adds new IP_LOCATION ESQL command: query-time GeoIP resolution
+151648,confirmed_production,1,Notify upload listener when object store service is shutting down.,Fixes StatelessObjectStoreService.enqueueTask throwing AssertionError and skipping listener.onFailure on shutdown
+151423,confirmed_production,1,Use field name instead of field info in IVFVectorsReader#readCentroidData,Fixes IVFVectorsReader using field name instead of FieldInfo number to avoid issues when numbers are shuffled during merge
+150812,confirmed_production,1,Fix race in SearchEngine processCommitNotifications,Fixes tryIncRef order in SearchEngine#processCommitNotifications to avoid AlreadyClosedException race
+151214,confirmed_production,1,Exponential histogram doc values return DocIdSetIterator.NO_MORE_DOCS when empty.,Fixes ExponentialHistogramFieldMapper DocIdSetIterator to return NO_MORE_DOCS instead of keeping -1 when empty
+150589,confirmed_production,1,Fix testUpdatingFileBasedRoleAffectsAllProjects,Fixes CompositeRolesStore race in multi-project setup: invalidateClusterScopedRoles does not affect new projects
+150377,confirmed_production,1,Consider a bare TaskCancelledException in BulkByPaginatedSearchTask#result,Handles bare TaskCancelledException (no cause) in BulkByPaginatedSearchTask#result
+150954,confirmed_production,1,Relax thread assertion in DataNodeRequestSender on cancel,Relaxes thread assertion in DataNodeRequestSender: cancel path legally runs on transport_worker
+150944,confirmed_production,1,Remove 1-byte pre-allocation in BytesRefArray,Removes spurious 1-byte pre-allocation in BytesRefArray to fix memory accounting assertion
+150789,confirmed_production,1,[Inference API] Fix Streaming publisher shutdown race condition,Fixes StreamingHttpResultPublisher shutdown race between Apache IO thread and subscriber cancel
+146634,confirmed_production,1,EQL: Fix management of PIT close failures after successful query,Fixes EQL PIT close failure calling onFailure() twice on listener after successful query completion
+150995,confirmed_production,1,Remove maxGenerationToUploadForFlush and always schedule upload,Removes maxGenerationToUploadForFlush and always schedules uploads to guarantee concurrently-missed uploads are not lost
+150364,confirmed_production,1,Properly handle negative OS/process CPU load value,Handles OperatingSystemMXBean returning -1 for CPU load before first measurement is available
+149795,confirmed_production,1,StatelessReshardDisruptionIT testReshardWithDisruption failing,Fixes race during HANDOFF allowing start-split request to fail while handoff proceeds simultaneously
+147720,confirmed_production,1,Fix testAllocationExplainRebalancingNotPreferred,Fixes float-to-double comparison precision issue in ThreadPoolUsageStats vs WriteLoadConstraintSettings
+148885,confirmed_production,1,Aggs: Account aggs uncompressed size on coordinator reduction,Fixes aggregation uncompressed size accounting on coordinator reduction; adds transport version
+148199,confirmed_production,1,Cancel task upon hitting a child ban when starting a child,Fixes reindex task result recording race between task status serialization and cancellation on child ban
+148268,confirmed_production,1,[Transform] Only run next search once,Fixes Transform doSaveState calling next.run() twice during shutdown when first call fails
+145304,confirmed_production,1,Fix CCR follow to handle indexing_complete race,Fixes CCR auto-follow rejecting stale leader settings that omit index.lifecycle.indexing_complete during ILM rollover
+148166,confirmed_production,1,Fix #147594,Fixes releasable release order: must release before notifying listener to prevent reader context removal before refcount drops
+148273,confirmed_production,1,Invalidate cache of max shard write load proportion on shard movements,Invalidates max-shard-write-load-proportion cache on shard movements to prevent stale allocation decisions
+147809,confirmed_production,1,ESQL: Account for full-text functions working on fields that are unfit for full-text search,Fixes ESQL analyzer for full-text functions on fields incompatible with full-text search
+147405,confirmed_production,1,Fix race in FsBlobContainer.moveBlobAtomic by replacing move op with hard link,Fixes TOCTOU race in FsBlobContainer.moveBlobAtomic by using atomic hard link instead of check-then-move
+147710,confirmed_production,1,Fix testConfiguredReservedRolesAfterClosingAndOpeningIndex,Fixes MarkRolesAsSyncedTask race: now checks index is both present AND open before syncing
+147484,confirmed_production,1,Fix race in testSeqNoPrunedOnLeaderAfterFollowerCatchesUp,Fixes stale minRetainedSeqNo cache returning 0 during force merge when retention lock held
+147481,confirmed_production,1,ESQL: Preserve emit size in AdaptiveBlockHash,Fixes AdaptiveBlockHash not preserving emit size across rehash/growth
+146530,confirmed_production,1,[ML] Fix scroll context leak on remote cluster after network disruption in CCS datafeeds,Fixes ML CCS datafeed scroll context leak on remote cluster after network disruption and single-chunk recovery
+146142,confirmed_production,1,Fix ReindexerTests.testRemoteReindexSkipsOpenPitWhenPointInTimeAlreadySet,Fixes thread leak in ReindexerTests by ensuring wrapped listener completes only after RestClient shutdown
+146408,confirmed_production,1,Simplify get reindex API and fix integration tests,Simplifies GET /_reindex/{task_id} by removing unnecessary chain-following logic and wrapper class
+146340,confirmed_production,1,[Test] Fix CcrSeqNoPruningIT,Fixes stale minRetainedSeqNo cache in PruningMergePolicy causing incorrect seq-no pruning during force merge
+146258,confirmed_production,1,Fail recovery when index not found with non-empty starting seq no,Promotes assertion-only check to thrown RecoveryFailedException for IndexNotFoundException with valid translog seqno
+145955,confirmed_production,1,Allow hasPendingAsyncFetch to be used in immutable routing allocations,Fixes overly-strict RoutingAllocation use: hasPendingAsyncFetch is legitimately used in allocation explain
+145283,confirmed_production,1,[ML] Fix ML stop datafeed ignoring close_job flag,Fixes ML stop datafeed ignoring close_job REST parameter: flag was never forwarded through transport layer
+144225,confirmed_production,1,ES|QL: MMR more fixes,Fixes MMR bugs including queryVector mutation in constructor affecting NodeInfo and plan rewrites
+145212,confirmed_production,1,Restore exception semantics for RequestParams,Fixes regression where RequestParams wrapping IllegalArgumentException as BadParameterException caused 500 instead of 400
+144917,confirmed_production,1,[ML] Fix test ClassificationIT#testWithOnlyTrainingRowsAndTrainingPercentIsFifty_DependentVariableIsKeyword,Fixes TOCTOU race in AbstractAuditor.indexDoc that silently drops messages between check and synchronized block
+144708,confirmed_production,1,Fix reader context leak when query response serialization fails,Fixes reader context leak when query response serialization fails inside NetworkPathListener
+142766,confirmed_production,1,Cancel reindex body always has status,Fixes race where cancel reindex status is not yet set when task is cancelled with wait_for_completion=true
+144308,confirmed_production,1,"Fix edge case in ""_terms_enum"" API for ip fields",Fixes _terms_enum API for IPv6 addresses with 0 prefix incorrectly excluding non-zero second groups
+136363,confirmed_production,1,[ML] Auditor reset fix,Fixes ML auditor reset leaking into next test by adding explicit reset action instead of cluster-state communication
+143544,confirmed_production,1,Do not enable doc-partitioning for count,Disables doc-partitioning for count to prevent incorrect counts when query cache is populated mid-way
+144175,confirmed_production,1,Fix preflight dynamic mapping merge race at field limit,Fixes preflight dynamic mapping merge race: MapperService reading this.mapper multiple times sees inconsistent versions
+143873,confirmed_production,1,Fix circuit breaker leak in BreakingTDigestHolder,Fixes circuit breaker memory leak in BreakingTDigestHolder when breaker trips
+143627,confirmed_production,1,ESQL: Fix an issue with Lookup Join and loading Large Text Fields,Fixes CircuitBreaker exceptions in Lookup Join large text field loading by splitting large pages
+157255,confirmed_production,1,Fix NPE in ReplicationSplitHelper when target primary shard is unassigned,Title clearly describes a production bug fix
+156545,confirmed_production,1,Fix recovery metrics race: count bytes before SparseFileTracker advances,Body describes fixing incorrect production behavior
+155981,confirmed_production,1,Fix SOAR assignment failure on empty neighborhoods,Body describes fixing incorrect production behavior
+155524,confirmed_production,1,Deflake FUSE multivalued-score warning test                                                               ,Body describes fixing incorrect production behavior
+155530,confirmed_production,1,Deflake stats_first_last TO_LONG warning tests,Body describes fixing incorrect production behavior
+153737,confirmed_production,1,Fix a race condition in the WatcherLifeCycleService,Title clearly describes a production bug fix
+152214,confirmed_production,1,Fix race condition in SigtermTerminationHandler,Title clearly describes a production bug fix
+153253,confirmed_production,1,[ESQL] Add tryAdvance() to prevent drain deadlock,Title clearly describes a production bug fix
+152743,confirmed_production,1,[Inference API] Fix release-before-use SearchResponse bug in region policy APIs,Title clearly describes a production bug fix
+151607,confirmed_production,1,Short-circuit for empty range in waitForRange,Body describes fixing incorrect production behavior
+150551,confirmed_production,1,Fix RecoveryTarget hasReferences assertion error,Body describes fixing incorrect production behavior
+147348,confirmed_production,1,Fixed NPE in binary doc values query,Title clearly describes a production bug fix
+146802,confirmed_production,1,Fix Reindexing Slicing Bug,Body describes fixing incorrect production behavior
+145209,confirmed_production,1,Do not attempt marking store as corrupted if the check is rejected due to shutdown,Title clearly describes a production bug fix
+145053,confirmed_production,1,ESQL: Fix test bug,Title clearly describes a production bug fix
+143030,confirmed_production,1,ESQL: Fix incorrectly optimized fork with nullify unmapped_fields,Title clearly describes a production bug fix
